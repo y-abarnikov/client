@@ -1,0 +1,89 @@
+<div class="modal-overlay">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" *ngIf="mode === modes.CREATE">
+          Create facility
+        </h3>
+        <h3 class="modal-title" *ngIf="mode === modes.EDIT">Edit facility</h3>
+      </div>
+
+      <div class="modal-body">
+        <form
+          class="modal-info"
+          [formGroup]="modalWindow"
+          novalidate
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="form-group">
+            <label for="model" class="modal-subtitle col-form-label"
+              >Model</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="model"
+              formControlName="model"
+              placeholder="Model"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Manufacturer" class="modal-subtitle col-form-label"
+              >Manufacturer</label
+            >
+            <input
+              type="text"
+              id="Manufacturer"
+              formControlName="manufacturer"
+              class="form-control"
+              placeholder="Manufacturer"
+            />
+          </div>
+          <div class="form-group">
+            <label for="serial" class="modal-subtitle col-form-label"
+              >Serial</label
+            >
+            <input
+              type="text"
+              id="serial"
+              class="form-control"
+              formControlName="serial"
+              placeholder="Serial"
+            />
+          </div>
+          <div *ngIf="mode === modes.CREATE" class="form-group">
+            <label for="registrationKey" class="modal-subtitle col-form-label"
+              >Registration Key</label
+            >
+            <input
+              type="text"
+              id="registrationKey"
+              class="form-control"
+              formControlName="registrationKey"
+              placeholder="Registration Key"
+            />
+          </div>
+          <div class="modal-buttons">
+            <button class="btn cancel" (click)="onClose()">Cancel</button>
+            <button
+              class="btn send"
+              *ngIf="mode === modes.CREATE"
+              type="submit"
+              [disabled]="!modalWindow.valid"
+            >
+              Create
+            </button>
+            <button
+              class="btn send"
+              *ngIf="mode === modes.EDIT"
+              type="submit"
+              [disabled]="!modalWindow.valid"
+            >
+              Edit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
